@@ -21,7 +21,12 @@ A comprehensive UUID (Universally Unique Identifier) library for Zig, supporting
 ## Installation
 
 ### Using Zig Package Manager (Zig 0.11+)
-Add this library to your `build.zig.zon`:
+First, fetch the package to get the hash:
+
+```bash
+zig fetch --save https://github.com/jamesfrancis2004/uuid/archive/refs/tags/v0.1.0.tar.gz
+```
+This will automatically add the dependency to your `build.zig.zon` file. Alternatively, you can manually add it to your `build.zig.zon`:
 
 ```zig
 .{
