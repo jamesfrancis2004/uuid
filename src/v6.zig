@@ -10,16 +10,15 @@ var clock_seq_initialised: bool = false;
 const UUID_TICKS_BETWEEN_EPOCHS: i128 = 0x01B2_1DD2_1381_4000;
 
 pub fn setGlobalClockSeq(count: u14) void {
-    _ = @atomicLoad(bool, &clock_seq_initialised, .acquire);
     @atomicStore(u16, &global_clock_seq, @intCast(count), .seq_cst);
     @atomicStore(bool, &clock_seq_initialised, true, .release);
 }
 
 pub fn fetchAndAddCounter() u16 {
-    if (!@atomicLoad(bool, &clock_seq_initialised, .acquire)) {
-        global_clock_seq = std.crypto.random.int(u16);
+    const is_initialised = @atomicRmw(bool, &clock_seq_initialised, .Xchg, true, .acq_rel);
+    if (!is_initialised) {
+        @atomicStore(u16, &global_clock_seq, std.crypto.random.int(u16), .release);
     }
-    @atomicStore(bool, &clock_seq_initialised, true, .release);
     return @intCast((@atomicRmw(u16, &global_clock_seq, .Add, 1, .acq_rel)) & (std.math.maxInt(u16) >> 2));
 }
 

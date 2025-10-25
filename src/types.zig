@@ -632,7 +632,7 @@ test "Uuid.v1 produces correct results" {
     const uuid1 = Uuid.v1(node1);
     const uuid2 = Uuid.v1(node2);
     try std.testing.expect(!uuid1.eql(uuid2));
-    try std.testing.expectEqual(Version.Mac, uuid1.getVersion.?);
+    try std.testing.expectEqual(Version.Mac, uuid1.getVersion().?);
     const count1 = uuid1.getCounter();
     const count2 = uuid2.getCounter();
 
