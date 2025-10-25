@@ -18,6 +18,11 @@ A comprehensive UUID (Universally Unique Identifier) library for Zig, supporting
 - **Zero Dependencies**: Pure Zig implementation with no external dependencies
 - **Compile-Time Safety**: Leverages Zig's compile-time features for optimal performance
 
+## Compatibility
+| UUID Library Version | Zig Version |
+|---------------------|-------------|
+| 0.1.0               | 0.15.x      |
+
 ## Installation
 
 ### Using Zig Package Manager (Zig 0.11+)
