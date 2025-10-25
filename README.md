@@ -100,11 +100,11 @@ pub fn main() !void {
     // Generate a random UUID (v4)
     const id = uuid.Uuid.v4();
     const id_str = id.toString();
-    std.debug.print("Generated UUID: {f}\n", .{id_str});
+    std.debug.print("Generated UUID: {s}\n", .{id_str});
 
     // Parse a UUID from string
     const parsed = try uuid.Uuid.parse("550e8400-e29b-41d4-a716-446655440000");
-    std.debug.print("Parsed UUID: {f}\n", .{parsed.toString()});
+    std.debug.print("Parsed UUID: {s}\n", .{parsed.toString()});
 
     // Compare UUIDs
     if (id.eql(parsed)) {
@@ -289,7 +289,7 @@ pub fn main() !void {
     try map.put(id, "some value");
 
     if (map.get(id)) |value| {
-        std.debug.print("Found: {f}\n", .{value});
+        std.debug.print("Found: {s}\n", .{value});
     }
 }
 ```
